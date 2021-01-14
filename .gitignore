@@ -1,0 +1,18 @@
+# Our PDFs are all generated
+*.pdf
+
+# Emacs files
+*~
+
+# Python
+.venv
+.mypy_cache
+__pycache__
+*.pyc
+*.egg-info
+
+# LaTeX files
+*.aux
+*.dvi
+*.log
+*.out.ps
