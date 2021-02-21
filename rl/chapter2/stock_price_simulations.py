@@ -5,8 +5,15 @@ import numpy as np
 from numpy.random import binomial
 import itertools
 from operator import itemgetter
-from rl.gen_utils.common_funcs import get_logistic_func, get_unit_sigmoid_func
+# from rl.gen_utils.common_funcs import get_logistic_func, get_unit_sigmoid_func
+from typing import Callable
+VSML = 1e-8
+def get_logistic_func(alpha: float) -> Callable[[float], float]:
+    return lambda x, alpha=alpha: 1. / (1 + np.exp(-alpha * x))
 
+# noinspection PyShadowingNames,PyShadowingNames
+def get_unit_sigmoid_func(alpha: float) -> Callable[[float], float]:
+    return lambda x, alpha=alpha: 1. / (1 + (1 / np.where(x == 0, VSML, x) - 1) ** alpha)
 
 @dataclass
 class Process1:

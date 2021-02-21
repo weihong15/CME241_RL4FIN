@@ -52,14 +52,16 @@ def converge(values: Iterator[X], done: Callable[[X, X], bool]) -> Iterator[X]:
     a = next(values, None)
     if a is None:
         return
-
+    i = 1
     yield a
 
     for b in values:
         if done(a, b):
+            print("iterations made = ",i)
             return
 
         a = b
+        i +=1
         yield b
 
 
